@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="24dp"
+    android:background="@android:color/white"
+    tools:context=".MenuAdmin">
+
+    <!-- Encabezado -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Inicio"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:textColor="@android:color/black"
+        android:layout_marginBottom="8dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Administrador"
+        android:textSize="16sp"
+        android:textColor="@android:color/darker_gray"
+        android:layout_marginBottom="32dp"/>
+
+    <!-- Grid de opciones -->
+    <GridLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="24dp"
+        android:alignmentMode="alignMargins"
+        android:columnCount="2"
+        android:columnOrderPreserved="false"
+        android:rowCount="4">
+
+        <!-- Fila 1 -->
+        <Button
+            android:id="@+id/btnNuevoCliente"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_columnWeight="1"
+            android:layout_margin="8dp"
+            android:drawableTop="@drawable/clientes"
+            android:text="Nuevo Cliente"
+            style="@style/MenuButtonStyle"
+            app:backgroundTint="@null" />
+
+        <Button
+            android:id="@+id/btnClientes"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_columnWeight="1"
+            android:layout_margin="8dp"
+            android:drawableTop="@drawable/clientes"
+            android:text="Clientes"
+            style="@style/MenuButtonStyle"
+            app:backgroundTint="@null" />
+
+        <!-- Fila 2 -->
+        <Button
+            android:id="@+id/btnNuevoTrabajador"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_columnWeight="1"
+            android:layout_margin="8dp"
+            android:drawableTop="@drawable/nuevotrabajor"
+            android:text="Nuevo Trabajador"
+            style="@style/MenuButtonStyle"
+            app:backgroundTint="@null" />
+
+        <Button
+            android:id="@+id/btnTrabajadores"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_columnWeight="1"
+            android:layout_margin="8dp"
+            android:drawableTop="@drawable/trabajador"
+            android:text="Trabajadores"
+            style="@style/MenuButtonStyle"
+            app:backgroundTint="@null" />
+
+        <!-- Fila 3 -->
+        <Button
+            android:id="@+id/btnNuevoPedido"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_columnWeight="1"
+            android:layout_margin="8dp"
+            android:drawableTop="@drawable/nuevopedido"
+            android:text="Nuevo Pedido"
+            style="@style/MenuButtonStyle"
+            app:backgroundTint="@null" />
+
+        <Button
+            android:id="@+id/btnPedidos"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_columnWeight="1"
+            android:layout_margin="8dp"
+            android:drawableTop="@drawable/pedido"
+            android:text="Pedidos"
+            style="@style/MenuButtonStyle"
+            app:backgroundTint="@null" />
+
+        <!-- Fila 4 -->
+        <Button
+            android:id="@+id/btnNuevoProducto"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_columnWeight="1"
+            android:layout_margin="8dp"
+            android:drawableTop="@drawable/nuevoproducto"
+            android:text="Nuevo Producto"
+            style="@style/MenuButtonStyle"
+            app:backgroundTint="@null" />
+
+        <Button
+            android:id="@+id/btnProductos"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_columnWeight="1"
+            android:layout_margin="8dp"
+            android:drawableTop="@drawable/productos"
+            android:text="Productos"
+            style="@style/MenuButtonStyle"
+            app:backgroundTint="@null" />
+    </GridLayout>
+
+    <!-- Botón Cerrar Sesión -->
+    <Button
+        android:id="@+id/btnCerrarSesion"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:text="Cerrar Sesión"
+        android:backgroundTint="#000000"
+        android:textColor="@android:color/white"
+        android:drawablePadding="8dp" />
+</LinearLayout>

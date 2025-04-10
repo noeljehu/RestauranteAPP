@@ -64,9 +64,11 @@ class Login : AppCompatActivity() {
                                         // Verificar el puesto y redirigir
                                         when (puesto) {
                                             "administrador" -> {
-                                                // Redirigir a la pantalla de administrador
+
                                                 Toast.makeText(this, "Bienvenido Administrador", Toast.LENGTH_SHORT).show()
-                                               // startActivity(Intent(this, AdminActivity::class.java))
+                                               startActivity(Intent(this, MenuAdmin::class.java))
+
+
                                             }
                                             "mesero" -> {
                                                 // Redirigir a la pantalla de mesero
@@ -108,6 +110,8 @@ class Login : AppCompatActivity() {
             Toast.makeText(this, "Por favor, completa todos los campos", Toast.LENGTH_SHORT).show()
         }
     }
+
+
 
 
 }

@@ -4,7 +4,13 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+
+import com.noelayllon.apprestauranteeee.bd.AppDatabase
 import com.noelayllon.apprestauranteeee.databinding.ActivityMainBinding
+import com.noelayllon.apprestauranteeee.modelo.Cliente
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 class MainActivity : AppCompatActivity() {
 
@@ -26,5 +32,7 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(this, Login::class.java)
             startActivity(intent)
         }
+
     }
+
 }
