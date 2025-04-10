@@ -1,0 +1,9 @@
+
+<resources>
+    <string-array name="puestos_array">
+        <item>administrador</item>
+        <item>mesero</item>
+        <item>cocinero</item>
+        <item>limpieza</item>
+    </string-array>
+</resources>
