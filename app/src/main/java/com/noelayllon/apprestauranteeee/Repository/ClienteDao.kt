@@ -14,7 +14,6 @@ import kotlinx.coroutines.flow.Flow
 @Dao
 interface ClienteDao {
 
-
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insert(cliente: Cliente)
 
@@ -23,7 +22,28 @@ interface ClienteDao {
 
     @Query("SELECT * FROM Clientes WHERE dni = :dni")
     suspend fun getClienteByDni(dni: String): Cliente?
+
+    @Query("DELETE FROM Clientes WHERE dni = :dni")
+    suspend fun deleteClienteByDni(dni: String)
+
+    @Query("""
+    UPDATE Clientes 
+    SET nombre = :nombre, 
+        telefono = :telefono, 
+        direccion = :direccion, 
+        email_cliente = :email
+    WHERE dni = :dni
+    """)
+    suspend fun updateCliente(
+        dni: String,
+        nombre: String,
+        telefono: String,
+        direccion: String,
+        email: String
+    )
+
 }
+
 
 // ProductoDao.kt
 @Dao

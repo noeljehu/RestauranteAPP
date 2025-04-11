@@ -1,5 +1,6 @@
 package com.noelayllon.apprestauranteeee
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
@@ -35,6 +36,9 @@ class ListarCliente : AppCompatActivity() {
                     // Aquí manejas el clic en "Detalles"
                     Toast.makeText(this@ListarCliente, "Cliente: ${cliente.nombre}", Toast.LENGTH_SHORT).show()
                     // Puedes abrir un Dialog, nueva Activity, etc.
+                    val intent = Intent(this@ListarCliente, ClienteDetalle::class.java)
+                    intent.putExtra("clienteId", cliente.id)
+                    startActivity(intent)
                 }
             }
         }
