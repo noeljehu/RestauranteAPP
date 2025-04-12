@@ -6,9 +6,38 @@
     <color name="colorAccent">#323440</color>
 
     <color name="colorPrimary1">#6200EE</color>
-    <!--  Color morado de Material Design  -->
-    <color name="colorPrimaryDark">#3700B3</color>
-    <color name="colorAccent1">#03DAC5</color>
-    <color name="colorBotones">#BE6368</color>
+
+
+
+
+    <!--  Color de colorBotones  -->
+    <color name="colorBotones">#FF4081</color>
+
+    <!--  Paleta de grises  -->
+    <color name="gray">#FF9E9E9E</color>
+    <color name="gray_light">#FFE0E0E0</color>
+    <color name="gray_dark">#FF616161</color>
+    <!--  Colores para la app de comidas  -->
+    <color name="primary">#FF5722</color>
+    <!--  Naranja oscuro  -->
+    <color name="primary_light">#FF8A65</color>
+    <!--  Naranja claro  -->
+    <color name="primary_dark">#E64A19</color>
+    <!--  Naranja más oscuro  -->
+    <!--  Colores para precios  -->
+    <color name="price_original">#757575</color>
+    <!--  Gris para precio tachado  -->
+    <color name="price_discount">#4CAF50</color>
+    <!--  Verde para ofertas  -->
+    <color name="price_normal">#212121</color>
+    <!--  Negro para precio normal  -->
+    <!--  Colores para cards y fondos  -->
+    <color name="card_background">#FFFFFF</color>
+    <color name="background">#FAFAFA</color>
+    <!--  Colores para la barra de búsqueda  -->
+    <color name="search_background">#F5F5F5</color>
+    <color name="search_text">#212121</color>
+    <!--  Color para el texto de descripción  -->
+    <color name="text_secondary">#757575</color>
 
 </resources>

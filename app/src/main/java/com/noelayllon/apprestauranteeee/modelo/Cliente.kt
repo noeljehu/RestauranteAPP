@@ -1,12 +1,15 @@
 package com.noelayllon.apprestauranteeee.modelo
 
+import android.os.Parcelable
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.ForeignKey
 import androidx.room.Index
 import androidx.room.PrimaryKey
+import kotlinx.android.parcel.Parcelize
 
-// Cliente.kt
+
+@Parcelize
 @Entity(
     tableName = "Clientes",
     indices = [
@@ -21,9 +24,11 @@ data class Cliente(
     val direccion: String?,
     @ColumnInfo(name = "email_cliente") val email: String?,
     val dni: String
-)
+) : Parcelable
+
 
 // Producto.kt
+@Parcelize
 @Entity(tableName = "Productos")
 data class Producto(
     @PrimaryKey(autoGenerate = true) val id: Int? = null,
@@ -32,9 +37,10 @@ data class Producto(
     val precio: Double?,
     val categoria: String?,
     @ColumnInfo(name = "imagenUrl") val imagenUrl: String
-)
+): Parcelable
 
 // Pedido.kt
+
 @Entity(
     tableName = "Pedidos",
     foreignKeys = [ForeignKey(

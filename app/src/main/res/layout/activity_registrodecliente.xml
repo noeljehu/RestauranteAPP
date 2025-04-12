@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@color/white"
-    tools:context=".Cliente.NuevoClienteActivity">
+    tools:context=".Registrodecliente">
 
     <com.google.android.material.appbar.MaterialToolbar
         android:id="@+id/topAppBar1"
@@ -30,7 +30,6 @@
 
     </com.google.android.material.appbar.MaterialToolbar>
 
-
     <!-- ScrollView para formulario -->
     <ScrollView
         android:layout_width="match_parent"
@@ -49,7 +48,9 @@
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Nombre">
+                android:hint="Nombre"
+                android:layout_marginTop="10dp"
+                app:hintAnimationEnabled="true">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/nameEditText"
@@ -63,7 +64,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Teléfono"
-                android:layout_marginTop="10dp">
+                android:layout_marginTop="10dp"
+                app:hintAnimationEnabled="true">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/phoneEditText"
@@ -77,7 +79,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Dirección"
-                android:layout_marginTop="10dp">
+                android:layout_marginTop="10dp"
+                app:hintAnimationEnabled="true">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/addressEditText"
@@ -91,7 +94,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Email"
-                android:layout_marginTop="10dp">
+                android:layout_marginTop="10dp"
+                app:hintAnimationEnabled="true">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/emailEditText"
@@ -105,7 +109,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="DNI"
-                android:layout_marginTop="10dp">
+                android:layout_marginTop="10dp"
+                app:hintAnimationEnabled="true">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/dniEditText"
@@ -124,8 +129,6 @@
                 android:textColor="@color/white"
                 app:backgroundTint="#B1474B"
                 app:cornerRadius="8dp" />
-
-
         </LinearLayout>
     </ScrollView>
 </LinearLayout>

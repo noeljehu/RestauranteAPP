@@ -9,10 +9,8 @@ import com.noelayllon.apprestauranteeee.modelo.DetallePedido
 import com.noelayllon.apprestauranteeee.modelo.Pedido
 import com.noelayllon.apprestauranteeee.modelo.Producto
 import android.content.Context
-
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import androidx.room.TypeConverter
 import com.noelayllon.apprestauranteeee.Repository.DetallePedidoDao
 import com.noelayllon.apprestauranteeee.Repository.PedidoDao
 
@@ -27,7 +25,7 @@ import com.noelayllon.apprestauranteeee.Repository.PedidoDao
     version = 1
 )
 @TypeConverters(Converters::class)
-abstract class AppDatabase : RoomDatabase() {
+abstract class AppDatabase : RoomDatabase() {  // Eliminar la implementación de Appendable
     abstract fun clienteDao(): ClienteDao
     abstract fun productoDao(): ProductoDao
     abstract fun pedidoDao(): PedidoDao

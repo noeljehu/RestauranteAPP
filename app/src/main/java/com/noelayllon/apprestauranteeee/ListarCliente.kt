@@ -33,15 +33,17 @@ class ListarCliente : AppCompatActivity() {
         lifecycleScope.launch {
             database.clienteDao().getAllClientes().collect { listaClientes ->
                 binding.clientsRecyclerView.adapter = ClienteAdapter(listaClientes) { cliente ->
-                    // Aquí manejas el clic en "Detalles"
+                    // Mostrar un mensaje breve
                     Toast.makeText(this@ListarCliente, "Cliente: ${cliente.nombre}", Toast.LENGTH_SHORT).show()
-                    // Puedes abrir un Dialog, nueva Activity, etc.
-                    val intent = Intent(this@ListarCliente, ClienteDetalle::class.java)
-                    intent.putExtra("clienteId", cliente.id)
+
+                    // Enviar el cliente completo a la nueva Activity
+                    val intent = Intent(this@ListarCliente,ClienteDetalle ::class.java)
+                    intent.putExtra("cliente", cliente)
                     startActivity(intent)
                 }
             }
         }
+
         // Configura el topAppBar2
         binding.topAppBar2.setNavigationOnClickListener {
             intent = intent.setClass(this, MenuAdmin::class.java)

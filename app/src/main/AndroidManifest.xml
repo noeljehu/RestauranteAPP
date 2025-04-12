@@ -8,10 +8,30 @@
         android:fullBackupContent="@xml/backup_rules"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
+        android:permission="android.permission.INTERNET"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Apprestauranteeee"
-        tools:targetApi="31">
+        tools:targetApi="31"
+        >
+        <activity
+            android:name=".RegistrarProducto"
+            android:exported="false" />
+        <activity
+            android:name=".activity_registrar_producto"
+            android:exported="false" />
+        <activity
+            android:name=".menu_cocinero"
+            android:exported="false" />
+        <activity
+            android:name=".menu_mesero"
+            android:exported="false" />
+        <activity
+            android:name=".RegistrarProductoActivity"
+            android:exported="false" />
+        <activity
+            android:name=".comida"
+            android:exported="false" />
         <activity
             android:name=".ClienteDetalle"
             android:exported="false" />
@@ -20,9 +40,6 @@
             android:exported="false" />
         <activity
             android:name=".Registrodecliente"
-            android:exported="false" />
-        <activity
-            android:name=".RegistroUsuario"
             android:exported="false" />
         <activity
             android:name=".MenuAdmin"

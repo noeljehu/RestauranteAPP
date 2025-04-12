@@ -1,6 +1,6 @@
 package com.noelayllon.apprestauranteeee
-
 import android.os.Bundle
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
@@ -13,66 +13,80 @@ class ClienteDetalle : AppCompatActivity() {
 
     private lateinit var binding: ActivityClienteDetalleBinding
     private lateinit var database: AppDatabase
-    private lateinit var cliente: Cliente
+    private var cliente: Cliente? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
 
-        // Inflar el layout
         binding = ActivityClienteDetalleBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        // Configurar navegación atrás
-        binding.topAppBar .setNavigationOnClickListener {
+        binding.topAppBar.setNavigationOnClickListener {
             onBackPressedDispatcher.onBackPressed()
         }
 
-
-        // Obtener instancia DB
         database = AppDatabase.getDatabase(this)
 
-        // Obtener DNI del cliente desde el Intent
-        val clienteDni = intent.getStringExtra("clienteDni")  // <-- Usa DNI, no ID
-        if (clienteDni != null) {
-            lifecycleScope.launch {
-                val clienteBD = database.clienteDao().getClienteByDni(clienteDni)
-                if (clienteBD != null) {
-                    cliente = clienteBD
-                    // Mostrar en pantalla
-                    binding.nombreEditText.setText(cliente.nombre)
-                    binding.telefonoEditText.setText(cliente.telefono ?: "")
-                    binding.direccionEditText.setText(cliente.direccion ?: "")
-                    binding.emailEditText.setText(cliente.email ?: "")
-                    binding.dniEditText.setText(cliente.dni)
-                }
-            }
+        // Recuperar cliente desde el Intent
+        cliente = intent.getParcelableExtra("cliente")
+
+        if (cliente == null) {
+            finish() // Si no se recibió el cliente, cierra la pantalla
+            return
         }
+
+        // Mostrar datos en el formulario
+        binding.nombreEditText.setText(cliente?.nombre)
+        binding.telefonoEditText.setText(cliente?.telefono.orEmpty())
+        binding.direccionEditText.setText(cliente?.direccion.orEmpty())
+        binding.emailEditText.setText(cliente?.email.orEmpty())
+        binding.dniEditText.setText(cliente?.dni)
 
         // Modificar cliente
         binding.modificarButton.setOnClickListener {
-            val nombre = binding.nombreEditText.text.toString()
-            val telefono = binding.telefonoEditText.text.toString()
-            val direccion = binding.direccionEditText.text.toString()
-            val email = binding.emailEditText.text.toString()
+            val nombre = binding.nombreEditText.text.toString().trim()
+            val telefono = binding.telefonoEditText.text.toString().trim()
+            val direccion = binding.direccionEditText.text.toString().trim()
+            val email = binding.emailEditText.text.toString().trim()
 
-            lifecycleScope.launch {
-                database.clienteDao().updateCliente(
-                    dni = cliente.dni,
-                    nombre = nombre,
-                    telefono = telefono,
-                    direccion = direccion,
-                    email = email
-                )
-                onBackPressedDispatcher.onBackPressed()
+            // Validaciones simples
+            if (nombre.isEmpty()) {
+                binding.nombreEditText.error = "El nombre es obligatorio"
+                return@setOnClickListener
+            }
+
+            if (cliente != null) {
+                lifecycleScope.launch {
+                    (if (telefono.isEmpty()) null else telefono)?.let { it1 ->
+                        (if (direccion.isEmpty()) null else direccion)?.let { it2 ->
+                            (if (email.isEmpty()) null else email)?.let { it3 ->
+                                database.clienteDao().updateCliente(
+                                    dni = cliente!!.dni,
+                                    nombre = nombre,
+                                    telefono = it1,
+                                    direccion = it2,
+                                    email = it3
+                                )
+                            }
+                        }
+                    }
+                    // Mostrar mensaje de éxito
+                    Toast.makeText(this@ClienteDetalle, "Cliente modificado correctamente", Toast.LENGTH_SHORT).show()
+                    finish() // Cerrar la actividad después de la modificación
+                }
             }
         }
 
         // Eliminar cliente
         binding.eliminarButton.setOnClickListener {
-            lifecycleScope.launch {
-                database.clienteDao().deleteClienteByDni(cliente.dni)
-                onBackPressedDispatcher.onBackPressed()
+            cliente?.let {
+                lifecycleScope.launch {
+                    database.clienteDao().deleteClienteByDni(it.dni)
+                    // Mostrar mensaje de éxito
+                    Toast.makeText(this@ClienteDetalle, "Cliente eliminado correctamente", Toast.LENGTH_SHORT).show()
+                    finish() // Cerrar la actividad después de la eliminación
+                }
             }
         }
     }

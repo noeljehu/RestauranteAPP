@@ -3,6 +3,7 @@ plugins {
     alias(libs.plugins.kotlin.android)
     id("com.google.gms.google-services")
     id("kotlin-kapt")
+    id ("kotlin-parcelize")
 }
 
 android {
@@ -51,6 +52,7 @@ dependencies {
     implementation(libs.firebase.firestore)
     implementation(libs.androidx.adapters)
     implementation(libs.androidx.media3.common.ktx)
+    implementation(libs.play.services.cast.framework)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
@@ -70,6 +72,12 @@ dependencies {
 
     //fire base
     implementation(libs.firebase.bom)
+
+    implementation (libs.androidx.gridlayout)
+
+    implementation("com.squareup.picasso:picasso:2.8")
+
+
 
 
 }

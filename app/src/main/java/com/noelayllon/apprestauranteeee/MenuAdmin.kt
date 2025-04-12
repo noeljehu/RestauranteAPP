@@ -31,11 +31,9 @@ class MenuAdmin : AppCompatActivity() {
             val intent = Intent(this, ListarCliente::class.java)
             startActivity(intent)
         }
-
-
-
-
-
-
+        binding.btnNuevoProducto.setOnClickListener{
+            val intent = Intent(this, RegistrarProducto::class.java)
+            startActivity(intent)
+        }
     }
 }

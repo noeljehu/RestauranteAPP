@@ -66,29 +66,24 @@ class Login : AppCompatActivity() {
                                             "administrador" -> {
 
                                                 Toast.makeText(this, "Bienvenido Administrador", Toast.LENGTH_SHORT).show()
-                                               startActivity(Intent(this, MenuAdmin::class.java))
+                                                startActivity(Intent(this, MenuAdmin::class.java))
 
 
                                             }
                                             "mesero" -> {
                                                 // Redirigir a la pantalla de mesero
                                                 Toast.makeText(this, "Bienvenido Mesero", Toast.LENGTH_SHORT).show()
-                                              //  startActivity(Intent(this, MeseroActivity::class.java))
+                                                startActivity(Intent(this,menu_mesero::class.java))
                                             }
                                             "cocinero" -> {
                                                 Toast.makeText(this, "Bienvenido Cocinero", Toast.LENGTH_SHORT).show()
-                                                // Redirigir a la pantalla de cocinero
-                                                //startActivity(Intent(this, CocineroActivity::class.java))
-                                            }
-                                            "limpieza" -> {
-                                                Toast.makeText(this, "Bienvenido Limpieza", Toast.LENGTH_SHORT).show()
-                                                // Redirigir a la pantalla de limpieza
-                                                //startActivity(Intent(this, LimpiezaActivity::class.java))
+
+                                                startActivity(Intent(this,menu_cocinero ::class.java))
                                             }
                                             else -> {
                                                 Toast.makeText(this, "Puesto desconocido", Toast.LENGTH_SHORT).show()
                                                 // En caso de que el puesto no sea reconocido
-                                               // Toast.makeText(this, "Puesto desconocido", Toast.LENGTH_SHORT).show()
+                                                // Toast.makeText(this, "Puesto desconocido", Toast.LENGTH_SHORT).show()
                                             }
                                         }
                                         finish() // Cerrar la actividad de login después de redirigir

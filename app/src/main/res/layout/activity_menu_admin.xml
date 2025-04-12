@@ -1,14 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="24dp"
-    android:background="@android:color/white"
-    tools:context=".MenuAdmin">
+    tools:context=".MenuAdmin"
+    android:background="@android:color/white">
 
     <!-- Encabezado -->
     <TextView
@@ -28,116 +27,228 @@
         android:textColor="@android:color/darker_gray"
         android:layout_marginBottom="32dp"/>
 
-    <!-- Grid de opciones -->
+    <!-- Grid de 2 columnas para 8 botones (4 filas) -->
     <GridLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="24dp"
+        android:layout_marginBottom="16dp"
         android:alignmentMode="alignMargins"
         android:columnCount="2"
         android:columnOrderPreserved="false"
-        android:rowCount="4">
+        android:rowCount="4"
+        android:gravity="center">
 
         <!-- Fila 1 -->
-        <Button
-            android:id="@+id/btnNuevoCliente"
+        <LinearLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_columnWeight="1"
-            android:layout_margin="8dp"
-            android:drawableTop="@drawable/clientes"
-            android:text="Nuevo Cliente"
-            style="@style/MenuButtonStyle"
-            app:backgroundTint="@null" />
+            android:layout_marginBottom="16dp"
+            android:orientation="vertical"
+            android:gravity="center_horizontal"
+            android:padding="4dp">
 
-        <Button
-            android:id="@+id/btnClientes"
+            <ImageButton
+                android:id="@+id/btnNuevoCliente"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                style="@style/MenuButtonStyle"
+                android:src="@drawable/nuevocliente"
+                android:scaleType="centerInside" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Nuevo Cliente"
+                android:textSize="12sp"
+                android:layout_marginTop="2dp"/>
+        </LinearLayout>
+
+        <LinearLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_columnWeight="1"
-            android:layout_margin="8dp"
-            android:drawableTop="@drawable/clientes"
-            android:text="Clientes"
-            style="@style/MenuButtonStyle"
-            app:backgroundTint="@null" />
+            android:layout_marginBottom="16dp"
+            android:orientation="vertical"
+            android:gravity="center_horizontal">
+
+            <ImageButton
+                android:id="@+id/btnClientes"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                style="@style/MenuButtonStyle"
+                android:src="@drawable/clientes"
+                android:scaleType="centerInside"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Clientes"
+                android:textSize="14sp"
+                android:layout_marginTop="8dp"/>
+        </LinearLayout>
 
         <!-- Fila 2 -->
-        <Button
-            android:id="@+id/btnNuevoTrabajador"
+        <LinearLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_columnWeight="1"
-            android:layout_margin="8dp"
-            android:drawableTop="@drawable/nuevotrabajor"
-            android:text="Nuevo Trabajador"
-            style="@style/MenuButtonStyle"
-            app:backgroundTint="@null" />
+            android:layout_marginBottom="16dp"
+            android:orientation="vertical"
+            android:gravity="center_horizontal">
 
-        <Button
-            android:id="@+id/btnTrabajadores"
+            <ImageButton
+                android:id="@+id/btnNuevoTrabajador"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                style="@style/MenuButtonStyle"
+                android:src="@drawable/nuevotrabajor"
+                android:scaleType="centerInside"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Nuevo Trabajador"
+                android:textSize="14sp"
+                android:layout_marginTop="8dp"/>
+        </LinearLayout>
+
+        <LinearLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_columnWeight="1"
-            android:layout_margin="8dp"
-            android:drawableTop="@drawable/trabajador"
-            android:text="Trabajadores"
-            style="@style/MenuButtonStyle"
-            app:backgroundTint="@null" />
+            android:layout_marginBottom="16dp"
+            android:orientation="vertical"
+            android:gravity="center_horizontal">
+
+            <ImageButton
+                android:id="@+id/btnTrabajadores"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                style="@style/MenuButtonStyle"
+                android:src="@drawable/trabajador"
+                android:scaleType="centerInside"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Trabajadores"
+                android:textSize="14sp"
+                android:layout_marginTop="8dp"/>
+        </LinearLayout>
 
         <!-- Fila 3 -->
-        <Button
-            android:id="@+id/btnNuevoPedido"
+        <LinearLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_columnWeight="1"
-            android:layout_margin="8dp"
-            android:drawableTop="@drawable/nuevopedido"
-            android:text="Nuevo Pedido"
-            style="@style/MenuButtonStyle"
-            app:backgroundTint="@null" />
+            android:layout_marginBottom="16dp"
+            android:orientation="vertical"
+            android:gravity="center_horizontal">
 
-        <Button
-            android:id="@+id/btnPedidos"
+            <ImageButton
+                android:id="@+id/btnNuevoPedido"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                style="@style/MenuButtonStyle"
+                android:src="@drawable/nuevopedido"
+                android:scaleType="centerInside"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Nuevo Pedido"
+                android:textSize="14sp"
+                android:layout_marginTop="8dp"/>
+        </LinearLayout>
+
+        <LinearLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_columnWeight="1"
-            android:layout_margin="8dp"
-            android:drawableTop="@drawable/pedido"
-            android:text="Pedidos"
-            style="@style/MenuButtonStyle"
-            app:backgroundTint="@null" />
+            android:layout_marginBottom="16dp"
+            android:orientation="vertical"
+            android:gravity="center_horizontal">
+
+            <ImageButton
+                android:id="@+id/btnPedidos"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                style="@style/MenuButtonStyle"
+                android:src="@drawable/pedido"
+                android:scaleType="centerInside"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Pedidos"
+                android:textSize="14sp"
+                android:layout_marginTop="8dp"/>
+        </LinearLayout>
 
         <!-- Fila 4 -->
-        <Button
-            android:id="@+id/btnNuevoProducto"
+        <LinearLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_columnWeight="1"
-            android:layout_margin="8dp"
-            android:drawableTop="@drawable/nuevoproducto"
-            android:text="Nuevo Producto"
-            style="@style/MenuButtonStyle"
-            app:backgroundTint="@null" />
+            android:layout_marginBottom="16dp"
+            android:orientation="vertical"
+            android:gravity="center_horizontal">
 
-        <Button
-            android:id="@+id/btnProductos"
+            <ImageButton
+                android:id="@+id/btnNuevoProducto"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                style="@style/MenuButtonStyle"
+                android:src="@drawable/nuevoproducto"
+                android:scaleType="centerInside"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Nuevo Producto"
+                android:textSize="14sp"
+                android:layout_marginTop="8dp"/>
+        </LinearLayout>
+
+        <LinearLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_columnWeight="1"
-            android:layout_margin="8dp"
-            android:drawableTop="@drawable/productos"
-            android:text="Productos"
-            style="@style/MenuButtonStyle"
-            app:backgroundTint="@null" />
+            android:layout_marginBottom="16dp"
+            android:orientation="vertical"
+            android:gravity="center_horizontal">
+
+            <ImageButton
+                android:id="@+id/btnProductos"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                style="@style/MenuButtonStyle"
+                android:src="@drawable/productos"
+                android:scaleType="centerInside"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Productos"
+                android:textSize="14sp"
+                android:layout_marginTop="8dp"/>
+        </LinearLayout>
     </GridLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"/>
 
     <!-- Botón Cerrar Sesión -->
     <Button
         android:id="@+id/btnCerrarSesion"
-        android:layout_width="match_parent"
+        android:layout_width="280dp"
         android:layout_height="48dp"
+        android:layout_gravity="center_horizontal"
         android:text="Cerrar Sesión"
         android:backgroundTint="#000000"
         android:textColor="@android:color/white"
-        android:drawablePadding="8dp" />
+        android:drawablePadding="8dp"/>
 </LinearLayout>
