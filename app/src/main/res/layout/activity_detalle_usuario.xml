@@ -7,8 +7,9 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@color/white"
-    tools:context="RegistrarUsuario">
+    tools:context=".DetalleUsuario">
 
+    <!-- Toolbar -->
     <com.google.android.material.appbar.MaterialToolbar
         android:id="@+id/topAppBar3"
         android:layout_width="match_parent"
@@ -28,11 +29,13 @@
             android:textStyle="bold" />
     </com.google.android.material.appbar.MaterialToolbar>
 
+    <!-- ScrollView para contenido con padding -->
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:padding="16dp">
 
+        <!-- Un solo LinearLayout contenedor -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -53,8 +56,7 @@
                 app:boxCornerRadiusBottomStart="32dp"
                 app:boxCornerRadiusBottomEnd="32dp">
 
-
-            <com.google.android.material.textfield.TextInputEditText
+                <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/etNombre"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
@@ -139,47 +141,9 @@
                     android:inputType="numberDecimal" />
             </com.google.android.material.textfield.TextInputLayout>
 
-            <!-- Email -->
-            <com.google.android.material.textfield.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Email"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                app:boxBackgroundMode="outline"
-                app:boxCornerRadiusTopStart="32dp"
-                app:boxCornerRadiusTopEnd="32dp"
-                app:boxCornerRadiusBottomStart="32dp"
-                app:boxCornerRadiusBottomEnd="32dp">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/etEmail"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:inputType="textEmailAddress" />
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <!-- Contraseña -->
-            <com.google.android.material.textfield.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Contraseña"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                app:boxBackgroundMode="outline"
-                app:boxCornerRadiusTopStart="32dp"
-                app:boxCornerRadiusTopEnd="32dp"
-                app:boxCornerRadiusBottomStart="32dp"
-                app:boxCornerRadiusBottomEnd="32dp">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/etPassword"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:inputType="textPassword" />
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <!-- Botón Registrar -->
+            <!-- Botón de Registro -->
             <com.google.android.material.button.MaterialButton
-                android:id="@+id/btnRegistrar"
+                android:id="@+id/btnActualizar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
@@ -187,6 +151,18 @@
                 android:textColor="@android:color/white"
                 app:cornerRadius="24dp"
                 app:backgroundTint="@color/colorPrimary" />
+
+            <!-- Botón de Eliminar -->
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnEliminar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="Eliminar"
+                android:textColor="@android:color/white"
+                app:cornerRadius="24dp"
+                app:backgroundTint="@color/colorPrimary" />
+
         </LinearLayout>
     </ScrollView>
 </LinearLayout>
