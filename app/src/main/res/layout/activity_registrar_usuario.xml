@@ -13,7 +13,7 @@
         android:id="@+id/topAppBar3"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        android:background="@color/colorPrimary"
+        android:background="@color/card_background"
         app:navigationIcon="@drawable/ic_arrow_back"
         app:navigationContentDescription="Regresar">
 
@@ -23,7 +23,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:text="Registro de Trabajadores"
-            android:textColor="@android:color/white"
+            android:textColor="@color/black"
             android:textSize="20sp"
             android:textStyle="bold" />
     </com.google.android.material.appbar.MaterialToolbar>

@@ -37,6 +37,10 @@ class MenuAdmin : AppCompatActivity() {
             val intent = Intent(this, RegistrarProducto::class.java)
             startActivity(intent)
         }
+        binding.btnProductos.setOnClickListener{
+            val intent = Intent(this, ListarProducto::class.java)
+            startActivity(intent)
+        }
         binding.btnNuevoTrabajador.setOnClickListener{
             val intent = Intent(this, RegistrarUsuario::class.java)
             startActivity(intent)
@@ -45,5 +49,10 @@ class MenuAdmin : AppCompatActivity() {
             val intent = Intent(this,MostrarUsuarios::class.java)
             startActivity(intent)
         }
+        binding.btnNuevoPedido.setOnClickListener{
+            val intent = Intent(this,RegistrarPedido ::class.java)
+            startActivity(intent)
+        }
+
     }
 }

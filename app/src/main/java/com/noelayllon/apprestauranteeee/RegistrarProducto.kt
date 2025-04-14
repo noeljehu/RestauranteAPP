@@ -1,69 +1,81 @@
 package com.noelayllon.apprestauranteeee
 
 import android.os.Bundle
+import android.widget.ImageView
+import android.widget.LinearLayout
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.WindowCompat
-import androidx.lifecycle.lifecycleScope
-import androidx.room.Room
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
 import com.noelayllon.apprestauranteeee.bd.AppDatabase
 import com.noelayllon.apprestauranteeee.databinding.ActivityRegistrarProductoBinding
 import com.noelayllon.apprestauranteeee.modelo.Producto
 import com.squareup.picasso.Picasso
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class RegistrarProducto : AppCompatActivity() {
+
     private lateinit var binding: ActivityRegistrarProductoBinding
-    private var imagenUrlSeleccionada: String = ""
+    private lateinit var db: AppDatabase
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
-        WindowCompat.setDecorFitsSystemWindows(window, true)
-
         binding = ActivityRegistrarProductoBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        binding.btnSeleccionarImagen.setOnClickListener {
-            val url = binding.etImagenUrl.text.toString().trim()
-            if (url.isNotEmpty()) {
-                imagenUrlSeleccionada = url
-                Picasso.get().load(url).into(binding.ivImagenProducto)
-            } else {
-                Toast.makeText(this, "Ingresa una URL de imagen", Toast.LENGTH_SHORT).show()
-            }
-        }
+        // Inicializar la base de datos
+        db = AppDatabase.getDatabase(this)
 
+        // Configurar el botón de guardar
         binding.btnGuardarProducto.setOnClickListener {
-            guardarProducto()
-        }
-    }
+            val nombre = binding.etNombre.text.toString().trim()
+            val descripcion = binding.etDescripcion.text.toString().trim()
+            val precio = binding.etPrecio.text.toString().trim()
+            val categoria = binding.etCategoria.text.toString().trim()
+            val imagenUrl = binding.etImagenUrl.text.toString().trim()
 
-    private fun guardarProducto() {
-        val nombre = binding.etNombre.text.toString().trim()
-        val descripcion = binding.etDescripcion.text.toString().trim()
-        val precio = binding.etPrecio.text.toString().toDoubleOrNull()
-        val categoria = binding.etCategoria.text.toString().trim()
+            if (nombre.isNotEmpty() && descripcion.isNotEmpty() && precio.isNotEmpty() && categoria.isNotEmpty() && imagenUrl.isNotEmpty()) {
+                // Insertar un nuevo producto en la base de datos
+                val producto = Producto(
+                    nombre = nombre,
+                    descripcion = descripcion,
+                    precio = precio.toDouble(),
+                    categoria = categoria,
+                    imagenUrl = imagenUrl
+                )
 
-        if (nombre.isEmpty() || precio == null || imagenUrlSeleccionada.isEmpty()) {
-            Toast.makeText(this, "Completa todos los campos obligatorios", Toast.LENGTH_SHORT).show()
-            return
-        }
+                // Realizar la inserción en un hilo secundario
+                CoroutineScope(Dispatchers.IO).launch {
+                    db.productoDao().insert(producto)
+                    withContext(Dispatchers.Main) {
+                        Toast.makeText(this@RegistrarProducto, "Producto guardado", Toast.LENGTH_SHORT).show()
+                    }
+                }
 
-        val producto = Producto(
-            nombre = nombre,
-            descripcion = descripcion,
-            precio = precio,
-            categoria = categoria,
-            imagenUrl = imagenUrlSeleccionada
-        )
+                // Agregar ImageView dinámicamente
+                val imageView = ImageView(this)
+                val params = LinearLayout.LayoutParams(
+                    LinearLayout.LayoutParams.MATCH_PARENT,
+                    200 // Puedes ajustar la altura
+                )
+                imageView.layoutParams = params
 
-        lifecycleScope.launch {
-            val db = Room.databaseBuilder(applicationContext, AppDatabase::class.java, "mi_basedatos").build()
-            db.productoDao().insert(producto)
-            Toast.makeText(this@RegistrarProducto, "Producto guardado correctamente", Toast.LENGTH_SHORT).show()
-            finish()
+                // Agregar ImageView al layout
+                binding.root.addView(imageView)
+
+                // Usar Picasso para cargar la imagen en el ImageView
+                Picasso.get()
+                    .load(imagenUrl)
+                    .error(R.drawable.error_image)  // Si la imagen no carga, muestra una imagen de error
+                    .into(imageView)  // Cargar la imagen en el ImageView
+
+            } else {
+                Toast.makeText(this, "Por favor, completa todos los campos", Toast.LENGTH_SHORT).show()
+            }
         }
     }
 }

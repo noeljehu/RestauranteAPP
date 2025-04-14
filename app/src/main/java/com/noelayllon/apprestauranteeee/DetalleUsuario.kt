@@ -4,7 +4,6 @@ import android.app.DatePickerDialog
 import android.os.Bundle
 import android.widget.ArrayAdapter
 import android.widget.Toast
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.WindowCompat
 import com.google.firebase.Timestamp
@@ -22,7 +21,6 @@ class DetalleUsuario : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
         WindowCompat.setDecorFitsSystemWindows(window, true)
 
         binding = ActivityDetalleUsuarioBinding.inflate(layoutInflater)
@@ -108,6 +106,7 @@ class DetalleUsuario : AppCompatActivity() {
                             "fechaContratacion", usuario.fechaContratacion
                         )
                         .addOnSuccessListener {
+                            setResult(RESULT_OK)
                             Toast.makeText(this, "Usuario actualizado", Toast.LENGTH_SHORT).show()
                             finish()
                         }
@@ -130,6 +129,7 @@ class DetalleUsuario : AppCompatActivity() {
                     firestore.collection("usuarios").document(document.id)
                         .delete()
                         .addOnSuccessListener {
+                            setResult(RESULT_OK)
                             Toast.makeText(this, "Usuario eliminado", Toast.LENGTH_SHORT).show()
                             finish()
                         }

@@ -1,9 +1,11 @@
 package com.noelayllon.apprestauranteeee.Repository
 
 import androidx.room.Dao
+import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
+import androidx.room.Update
 import com.noelayllon.apprestauranteeee.modelo.Cliente
 import com.noelayllon.apprestauranteeee.modelo.DetallePedido
 import com.noelayllon.apprestauranteeee.modelo.Pedido
@@ -48,15 +50,24 @@ interface ClienteDao {
 // ProductoDao.kt
 @Dao
 interface ProductoDao {
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    @Insert
     suspend fun insert(producto: Producto)
 
-    @Query("SELECT * FROM Productos")
-    fun getAllProductos(): Flow<List<Producto>>
+    @Update
+    suspend fun update(producto: Producto)
 
-    @Query("SELECT * FROM Productos WHERE categoria = :categoria")
-    fun getProductosByCategoria(categoria: String): Flow<List<Producto>>
+    @Query("DELETE FROM productos WHERE id = :id")
+    suspend fun deleteById(id: Int)
+
+    @Query("SELECT * FROM productos")
+    suspend fun getAllProductos(): List<Producto>  // Función no reactiva
+
+    @Query("SELECT * FROM productos")
+    fun getAllProductosFlow(): Flow<List<Producto>>  // Función reactiva
 }
+
+
+
 
 // PedidoDao.kt
 @Dao

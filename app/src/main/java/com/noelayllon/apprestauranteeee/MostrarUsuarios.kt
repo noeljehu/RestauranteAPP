@@ -3,7 +3,8 @@ package com.noelayllon.apprestauranteeee
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
-import androidx.activity.enableEdgeToEdge
+import androidx.activity.result.ActivityResultLauncher
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.WindowCompat
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -17,23 +18,25 @@ class MostrarUsuarios : AppCompatActivity() {
     private lateinit var binding: ActivityMostrarUsuariosBinding
     private lateinit var firestore: FirebaseFirestore
     private lateinit var adapter: UsuarioAdapter
+    private lateinit var detalleUsuarioLauncher: ActivityResultLauncher<Intent>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
         WindowCompat.setDecorFitsSystemWindows(window, true)
 
-        // Inicializa ViewBinding
         binding = ActivityMostrarUsuariosBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        // Inicializa Firestore
         firestore = FirebaseFirestore.getInstance()
-
-        // Configura RecyclerView
         binding.recyclerViewUsuarios.layoutManager = LinearLayoutManager(this)
 
-        // Carga los usuarios desde Firestore
+        // Inicializa el launcher para recibir resultados de DetalleUsuario
+        detalleUsuarioLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+            if (result.resultCode == RESULT_OK) {
+                cargarUsuarios()
+            }
+        }
+
         cargarUsuarios()
     }
 
@@ -47,17 +50,15 @@ class MostrarUsuarios : AppCompatActivity() {
                     usuariosList.add(usuario)
                 }
 
-                // Asigna el adaptador con lambda para evento de "clic" en el usuario
                 adapter = UsuarioAdapter(usuariosList) { usuario ->
-                    // Enviar los datos del usuario a la actividad DetalleUsuario
-                    val intent = Intent(this,DetalleUsuario ::class.java).apply {
+                    val intent = Intent(this, DetalleUsuario::class.java).apply {
                         putExtra("usuario_nombre", usuario.nombre)
                         putExtra("usuario_telefono", usuario.telefono)
                         putExtra("usuario_puesto", usuario.puesto)
                         putExtra("usuario_salario", usuario.salario)
                         putExtra("usuario_fechaContratacion", usuario.fechaContratacion)
                     }
-                    startActivity(intent)
+                    detalleUsuarioLauncher.launch(intent)
                 }
 
                 binding.recyclerViewUsuarios.adapter = adapter
