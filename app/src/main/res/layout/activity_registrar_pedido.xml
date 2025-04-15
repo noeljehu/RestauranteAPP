@@ -89,9 +89,10 @@
             android:id="@+id/spinner_mesa"
             android:layout_width="match_parent"
             android:layout_height="48dp"
+            android:layout_marginBottom="20dp"
             android:background="@drawable/bg_tipopedido"
-            android:popupTheme="@style/SpinnerPopupTheme"
-            android:layout_marginBottom="20dp" />
+            android:entries="@array/pedido"
+            android:popupTheme="@style/SpinnerPopupTheme" />
 
 
         <!-- Botón Confirmar -->

@@ -4,6 +4,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
@@ -25,8 +26,8 @@ class ProductoPedidoAdapter(
         val tvPrecio: TextView = itemView.findViewById(R.id.tvPrecio)
         val tvIngredientes: TextView = itemView.findViewById(R.id.tvIngredientes)
         val tvCantidad: TextView = itemView.findViewById(R.id.tvCantidad)
-        val btnMas: Button = itemView.findViewById(R.id.btnMas)
-        val btnMenos: Button = itemView.findViewById(R.id.btnMenos)
+        val btnMas: ImageButton = itemView.findViewById(R.id.btnMas)
+        val btnMenos: ImageButton = itemView.findViewById(R.id.btnMenos)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -54,7 +55,7 @@ class ProductoPedidoAdapter(
         holder.btnMas.setOnClickListener {
             val productoId = producto.id
             if (productoId != null) {
-                val nuevaCantidad = cantidadActual + 1
+                val nuevaCantidad = (cantidades[productoId] ?: 0) + 1
                 actualizarCantidad(productoId, nuevaCantidad)
                 holder.tvCantidad.text = nuevaCantidad.toString()
             }
@@ -62,12 +63,15 @@ class ProductoPedidoAdapter(
 
         holder.btnMenos.setOnClickListener {
             val productoId = producto.id
-            if (productoId != null && cantidadActual > 0) {
-                val nuevaCantidad = cantidadActual - 1
+            val actual = cantidades[productoId] ?: 0
+            if (productoId != null && actual > 0) {
+                val nuevaCantidad = actual - 1
                 actualizarCantidad(productoId, nuevaCantidad)
                 holder.tvCantidad.text = nuevaCantidad.toString()
             }
         }
+
+
     }
 
     private fun actualizarCantidad(productoId: Int, cantidad: Int) {

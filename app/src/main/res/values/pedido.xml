@@ -1,0 +1,7 @@
+<resources>
+    <string-array name="pedido">
+        <item>Comer Aqui</item>
+        <item>llevar</item>
+
+    </string-array>
+</resources>

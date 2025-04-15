@@ -22,7 +22,7 @@ interface ClienteDao {
     @Query("SELECT * FROM Clientes")
     fun getAllClientes(): Flow<List<Cliente>>
 
-    @Query("SELECT * FROM Clientes WHERE dni = :dni")
+    @Query("SELECT * FROM clientes WHERE UPPER(dni) = UPPER(:dni) LIMIT 1")
     suspend fun getClienteByDni(dni: String): Cliente?
 
     @Query("DELETE FROM Clientes WHERE dni = :dni")
@@ -73,7 +73,7 @@ interface ProductoDao {
 @Dao
 interface PedidoDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insert(pedido: Pedido)
+    suspend fun insert(pedido: Pedido): Long
 
     @Query("SELECT * FROM Pedidos WHERE dni_cliente = :dniCliente")
     fun getPedidosByCliente(dniCliente: String): Flow<List<Pedido>>
@@ -83,7 +83,7 @@ interface PedidoDao {
 @Dao
 interface DetallePedidoDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insert(detalle: DetallePedido)
+    suspend fun insert(detalle: DetallePedido): Long
 
     @Query("SELECT * FROM detalle_pedido WHERE pedido_id = :pedidoId")
     fun getDetallesByPedido(pedidoId: Int): Flow<List<DetallePedido>>

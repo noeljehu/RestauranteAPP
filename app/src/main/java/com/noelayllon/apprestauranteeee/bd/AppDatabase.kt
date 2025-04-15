@@ -22,7 +22,7 @@ import com.noelayllon.apprestauranteeee.Repository.PedidoDao
         Pedido::class,
         DetallePedido::class
     ],
-    version = 1
+    version = 2
 )
 @TypeConverters(Converters::class)
 abstract class AppDatabase : RoomDatabase() {  // Eliminar la implementación de Appendable

@@ -52,7 +52,11 @@ class RegistrarProducto : AppCompatActivity() {
                 CoroutineScope(Dispatchers.IO).launch {
                     db.productoDao().insert(producto)
                     withContext(Dispatchers.Main) {
-                        Toast.makeText(this@RegistrarProducto, "Producto guardado", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(
+                            this@RegistrarProducto,
+                            "Producto guardado",
+                            Toast.LENGTH_SHORT
+                        ).show()
                     }
                 }
 
@@ -71,7 +75,20 @@ class RegistrarProducto : AppCompatActivity() {
                 Picasso.get()
                     .load(imagenUrl)
                     .error(R.drawable.error_image)  // Si la imagen no carga, muestra una imagen de error
-                    .into(imageView)  // Cargar la imagen en el ImageView
+                    .into(imageView, object : com.squareup.picasso.Callback {
+                        override fun onSuccess() {
+                            // Mostrar el Toast desde el contexto correcto (actividad)
+                            Toast.makeText(this@RegistrarProducto, "Imagen cargada con éxito", Toast.LENGTH_SHORT).show()
+                        }
+
+                        override fun onError(e: Exception?) {
+                            // Mostrar el Toast desde el contexto correcto (actividad)
+                            Toast.makeText(this@RegistrarProducto, "Error cargando la imagen: ${e?.message}", Toast.LENGTH_SHORT).show()
+                        }
+                    })
+
+
+
 
             } else {
                 Toast.makeText(this, "Por favor, completa todos los campos", Toast.LENGTH_SHORT).show()

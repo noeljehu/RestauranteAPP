@@ -9,6 +9,7 @@ import androidx.appcompat.widget.SearchView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.WindowCompat
 import androidx.lifecycle.lifecycleScope
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.noelayllon.apprestauranteeee.Adapter.ProductoAdapter
 import com.noelayllon.apprestauranteeee.bd.AppDatabase
@@ -36,7 +37,8 @@ class ListarProducto : AppCompatActivity() {
         setContentView(binding.root)
 
         // Configurar el RecyclerView
-        binding.rvProductos.layoutManager = LinearLayoutManager(this)
+        binding.rvProductos.layoutManager = GridLayoutManager(this, 2)
+
         binding.rvProductos.adapter = productoAdapter
 
         // Cargar los productos desde la base de datos

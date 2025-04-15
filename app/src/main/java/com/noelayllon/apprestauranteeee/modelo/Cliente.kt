@@ -34,7 +34,7 @@ data class Producto(
     @PrimaryKey(autoGenerate = true) val id: Int? = null,
     val nombre: String,
     val descripcion: String?,
-    val precio: Double?,
+    val precio: Double,
     val categoria: String?,
     @ColumnInfo(name = "imagenUrl") val imagenUrl: String
 ): Parcelable

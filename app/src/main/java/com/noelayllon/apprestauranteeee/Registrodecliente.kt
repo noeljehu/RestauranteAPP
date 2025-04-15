@@ -52,7 +52,7 @@ class Registrodecliente : AppCompatActivity() {
         val telefono = binding.phoneEditText.text.toString().trim()
         val direccion = binding.addressEditText.text.toString().trim()
         val email = binding.emailEditText.text.toString().trim()
-        val dni = binding.dniEditText.text.toString().trim()
+        val dni = binding.dniEditText.text.toString().trim().uppercase()
 
         if (nombre.isBlank() || telefono.isBlank() || direccion.isBlank() ||
             email.isBlank() || dni.isBlank()
