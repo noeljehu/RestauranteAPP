@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:weightSum="1"
+    tools:context=".RegistrarDatosGoogle">
+
+    <!-- Campo de Nombre -->
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/tilNombre"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edtNombre"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Nombre"
+            android:inputType="textPersonName" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <!-- Campo de Correo -->
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/tilCorreo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edtCorreo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:clickable="false"
+            android:focusable="false"
+            android:hint="Correo"
+            android:inputType="textEmailAddress" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <!-- Spinner de Puesto -->
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:hint="Puesto"
+        app:boxBackgroundMode="outline"
+        app:boxCornerRadiusBottomEnd="32dp"
+        app:boxCornerRadiusBottomStart="32dp"
+        app:boxCornerRadiusTopEnd="32dp"
+        app:boxCornerRadiusTopStart="32dp">
+
+        <Spinner
+            android:id="@+id/spinnerPuesto"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:entries="@array/puestos_array"
+            android:padding="11dp"
+            android:spinnerMode="dropdown" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <!-- Campo de Salario -->
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/tilSalario"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edtSalario"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Salario"
+            android:inputType="numberDecimal" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <!-- Botón de Guardar -->
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnGuardar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Guardar"
+        app:iconGravity="textStart"
+        app:iconPadding="8dp" />
+
+</LinearLayout>

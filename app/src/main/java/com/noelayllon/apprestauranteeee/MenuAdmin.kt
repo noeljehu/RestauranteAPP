@@ -4,60 +4,77 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
 import androidx.core.view.WindowCompat
-import androidx.core.view.WindowInsetsCompat
+import com.google.android.gms.auth.api.signin.GoogleSignIn
+import com.google.android.gms.auth.api.signin.GoogleSignInClient
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions
+import com.google.firebase.auth.FirebaseAuth
 import com.noelayllon.apprestauranteeee.databinding.ActivityMenuAdminBinding
 
 class MenuAdmin : AppCompatActivity() {
-    // Declaramos el objeto binding
+
     private lateinit var binding: ActivityMenuAdminBinding
+    private lateinit var auth: FirebaseAuth
+    private lateinit var googleSignInClient: GoogleSignInClient
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         WindowCompat.setDecorFitsSystemWindows(window, true)
-        setContentView(R.layout.activity_menu_admin)
 
         binding = ActivityMenuAdminBinding.inflate(layoutInflater)
-
         setContentView(binding.root)
-        // Configuramos el OnClickListener para el botón
-        binding.btnNuevoCliente .setOnClickListener {
-            // Iniciar la actividad de Registro de Cliente
-            val intent = Intent(this, Registrodecliente::class.java)
-            startActivity(intent)
+
+        auth = FirebaseAuth.getInstance()
+        initGoogleClient()
+
+        // Botones para navegación
+        binding.btnNuevoCliente.setOnClickListener {
+            startActivity(Intent(this, Registrodecliente::class.java))
         }
         binding.btnClientes.setOnClickListener {
-            // Iniciar la actividad de Listar Clientes
-            val intent = Intent(this, ListarCliente::class.java)
-            startActivity(intent)
+            startActivity(Intent(this, ListarCliente::class.java))
         }
-        binding.btnNuevoProducto.setOnClickListener{
-            val intent = Intent(this, RegistrarProducto::class.java)
-            startActivity(intent)
+        binding.btnNuevoProducto.setOnClickListener {
+            startActivity(Intent(this, RegistrarProducto::class.java))
         }
-        binding.btnProductos.setOnClickListener{
-            val intent = Intent(this, ListarProducto::class.java)
-            startActivity(intent)
+        binding.btnProductos.setOnClickListener {
+            startActivity(Intent(this, ListarProducto::class.java))
         }
-        binding.btnNuevoTrabajador.setOnClickListener{
-            val intent = Intent(this, RegistrarUsuario::class.java)
-            startActivity(intent)
+        binding.btnNuevoTrabajador.setOnClickListener {
+            startActivity(Intent(this, RegistrarUsuario::class.java))
         }
-        binding.btnTrabajadores.setOnClickListener{
-            val intent = Intent(this,MostrarUsuarios::class.java)
-            startActivity(intent)
+        binding.btnTrabajadores.setOnClickListener {
+            startActivity(Intent(this, MostrarUsuarios::class.java))
         }
-        binding.btnNuevoPedido.setOnClickListener{
-            val intent = Intent(this,RegistrarPedido ::class.java)
-            startActivity(intent)
+        binding.btnNuevoPedido.setOnClickListener {
+            startActivity(Intent(this, RegistrarPedido::class.java))
         }
-        binding.btnPedidos.setOnClickListener{
-            val intent = Intent(this,VerPedidosActivity ::class.java)
-            startActivity(intent)
+        binding.btnPedidos.setOnClickListener {
+            startActivity(Intent(this, VerPedidosActivity::class.java))
         }
 
+        // Botón cerrar sesión
+        binding.btnCerrarSesion.setOnClickListener {
+            signOut()
+        }
+    }
 
+    private fun initGoogleClient() {
+        val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+            .requestIdToken(getString(R.string.default_web_client_id))
+            .requestEmail()
+            .build()
+        googleSignInClient = GoogleSignIn.getClient(this, gso)
+    }
+
+    private fun signOut() {
+        auth.signOut()
+        googleSignInClient.signOut().addOnCompleteListener {
+            val intent = Intent(this, Login::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+            startActivity(intent)
+            finish()
+        }
     }
 }
