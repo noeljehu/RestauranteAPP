@@ -72,8 +72,14 @@ interface ProductoDao {
 // PedidoDao.kt
 @Dao
 interface PedidoDao {
+    @Query("SELECT * FROM Pedidos WHERE id = :pedidoId")
+    suspend fun getPedidoById(pedidoId: Int): Pedido
+
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insert(pedido: Pedido): Long
+
+    @Query("SELECT * FROM Pedidos")
+    suspend fun getAllPedidos(): List<Pedido>
 
     @Query("SELECT * FROM Pedidos WHERE dni_cliente = :dniCliente")
     fun getPedidosByCliente(dniCliente: String): Flow<List<Pedido>>
@@ -82,6 +88,10 @@ interface PedidoDao {
 // DetallePedidoDao.kt
 @Dao
 interface DetallePedidoDao {
+
+    @Query("SELECT * FROM detalle_pedido WHERE pedido_id = :pedidoId")
+    suspend fun getDetallesByPedidoId(pedidoId: Int): List<DetallePedido>
+
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insert(detalle: DetallePedido): Long
 

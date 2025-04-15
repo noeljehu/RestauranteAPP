@@ -14,6 +14,12 @@
         android:theme="@style/Theme.Apprestauranteeee"
         tools:targetApi="31">
         <activity
+            android:name=".DetallePedidoActivity"
+            android:exported="false" />
+        <activity
+            android:name=".VerPedidosActivity"
+            android:exported="false" />
+        <activity
             android:name=".RegistrarPedido"
             android:exported="false" />
         <activity

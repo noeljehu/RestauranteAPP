@@ -53,6 +53,10 @@ class MenuAdmin : AppCompatActivity() {
             val intent = Intent(this,RegistrarPedido ::class.java)
             startActivity(intent)
         }
+        binding.btnPedidos.setOnClickListener{
+            val intent = Intent(this,VerPedidosActivity ::class.java)
+            startActivity(intent)
+        }
 
 
     }

@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name">Apprestauranteeee</string>
 
+        <string name="default_web_client_id">434243053830-uo6m8vcs58agk07asov37504cru362l0.apps.googleusercontent.com</string>
+
+
 </resources>
